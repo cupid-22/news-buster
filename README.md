@@ -66,7 +66,8 @@ the acknowledgements section. Here are a few examples.
 
 <div id="image"></div>
 
-![Mind Mapping.png](readme_content/flow_diagram.png)
+![Mind Mapping.png](readme_content/flow_diagram.jpg)
+<br/>
 _Above image depicts only a first draft ideology by [cupid-22](https://github.com/cupid-22) and there can be more solid
 ways to make this code flow fireproof. This is the initial concept from the provided document by the institution._
 <li>Process Description:</li>
