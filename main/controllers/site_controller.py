@@ -7,5 +7,5 @@ def add_site(site_link: str) -> bool:
 
 
 def get_all_site() -> list:
-    all_tag = Sites.query.all()
-    return all_tag
+    all_sites = Sites.query.all()
+    return all_sites

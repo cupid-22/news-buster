@@ -10,7 +10,7 @@ class API:
         response.raise_for_status()
         return response
 
-    def get(self, domain_url, get_params):
+    def get(self, domain_url, get_params=None):
         response = requests.get(f'{self.base_url}/{domain_url}', timeout=10, params=get_params)
         response.raise_for_status()
         return response
