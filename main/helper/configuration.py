@@ -7,7 +7,7 @@ ROOT_PATH = re.split('\Wmain', os.getcwd())[0]
 
 class BaseConfig(object):
     PORT = os.environ.get('PORT', 5000)
-    ROOT_PATH = re.split('\Wmain', os.getcwd())[0]
+    ROOT_PATH = ROOT_PATH
     SERVER_VERBOSE_LOGS = False
     SMTP_EMAIL_ID = os.environ.get('SMTP_PASSWORD', 'gaurav.mishra.cx@gmail.com')
     SMTP_SERVER_ID = 'smtp.gmail.com'
@@ -25,7 +25,7 @@ class DevelopmentConfig(BaseConfig):
     TESTING = True
     SMTP_PASSWORD = 'weserve$123'
     BASE_URL = 'http://localhost:5000/'
-    DB_URI = 'postgres://sbpfubqacsitcy:5fc34780b860862e398d91bd7c2107791a5ab7c301a1eca2492fbb829c1f1bd8@ec2-34-197-212-240.compute-1.amazonaws.com:5432/ded4lr8n887h9s'
+    DB_URI = os.environ.get('SMTP_PASSWORD', 'default')
     SERVER_VERBOSE_LOGS = True
 
 
