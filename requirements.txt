@@ -21,3 +21,4 @@ SQLAlchemy==1.4.26
 vine==5.0.0
 wcwidth==0.2.5
 Werkzeug==2.0.2
+requests~=2.26.0

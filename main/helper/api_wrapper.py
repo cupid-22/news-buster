@@ -2,20 +2,15 @@ import requests
 
 
 class API:
-    def __init__(self, url):
-        self.api
+    def __init__(self, base_url):
+        self.base_url = base_url
 
-    def post(self):
-        try:
+    def post(self, domain_url, payload):
+        response = requests.post(f'{self.base_url}/{domain_url}', timeout=20, params=payload)
+        response.raise_for_status()
+        return response
 
-            response = requests.get('http://api.open-notify.org/astros.json', timeout=5)
-            response.raise_for_status()
-            # Code here will only run if the request is successful
-        except requests.exceptions.HTTPError as errh:
-            print(errh)
-        except requests.exceptions.ConnectionError as errc:
-            print(errc)
-        except requests.exceptions.Timeout as errt:
-            print(errt)
-        except requests.exceptions.RequestException as err:
-            print(err)
+    def get(self, domain_url, get_params):
+        response = requests.get(f'{self.base_url}/{domain_url}', timeout=10, params=get_params)
+        response.raise_for_status()
+        return response
