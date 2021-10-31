@@ -62,13 +62,13 @@ the acknowledgements section. Here are a few examples.
 - Database UML:
   ![database_uml.png](readme_content/database_uml.png)
 
-  - Process Diagram:
-      <div id="image"></div>
+- Process Diagram:
+    <div id="image"></div>
 
-    ![Mind Mapping.png](readme_content/flow_diagram.jpg)
-      <br/>
-  _Above image depicts only a first draft ideology by [cupid-22](https://github.com/cupid-22) and there can be more solid
-  ways to make this code flow fireproof. This is the initial concept from the provided document by the institution._
+  ![Mind Mapping.png](readme_content/flow_diagram.jpg)
+    <br/>
+_Above image depicts only a first draft ideology by [cupid-22](https://github.com/cupid-22) and there can be more solid
+ways to make this code flow fireproof. This is the initial concept from the provided document by the institution._
 <li>Process Description:</li>
 <ul>
     <li>Cron job (Or libs replicating such functionality I am opting celery beat as it is integrated to the task queue) will keep the process in loop.</li> 
