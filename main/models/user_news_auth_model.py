@@ -1,5 +1,5 @@
 from . import db
-from sqlalchemy.orm import validates, relationship
+from sqlalchemy.orm import validates
 from dataclasses import dataclass
 from .base_model import BaseModel
 
@@ -17,12 +17,6 @@ class NewsUserAuth(BaseModel):
     users = db.relationship('Users', backref=db.backref('NewsUserAuth', lazy=True))
     news = db.relationship('Sites', backref=db.backref('NewsUserAuth', lazy=True))
 
-    @validates('link')
-    def validate_site_link(self, key, link):
-        if not link:
-            raise AssertionError('Site link cannot be blank.')
-        if Sites.query.filter(Sites.link == link).first():
-            raise AssertionError('The site link {} already exists'.format(link))
-        if len(link) < 2:
-            raise AssertionError('Site link must be greater than 2 characters.')
-        return link
+    @validates('status')
+    def validate_status(self, key, status):
+        assert type(status) is not bool
