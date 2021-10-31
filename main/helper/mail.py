@@ -2,45 +2,46 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import re
+import os
 
 
-class Mail():
-    def __init__(self, receiver_email='gaurav.mishra.cx@gmail.com', subject='Error Mail', nonHtmlFlag=False):
+class Mail:
+    def __init__(self, receiver_email):
         """
-
-        :param receiver_email: accepts string with proper formatted mail address of sender
-        :param subject: string for subject part of email by default it is set to be blank quotes
-        :param body: Triple quoted string for body portion of email by default it is set to be blank quotes
-        :param nonHtmlFlag: sets body type from html to plain default False
-        :returns: Returns True if everything goes right else will either raise error or return false
-
+            :param receiver_email: accepts string with proper formatted mail address of sender
+            :returns: Returns True if everything goes right else will either raise error or return false
         """
 
         super().__init__()
-        self.to_mail = receiver_email
-        self.subject = subject
+        self.conf = os.environ
+        self.to_mail = receiver_email if receiver_email else os.getenv('MAIL_USERNAME')
+        self.subject = None
         self.body = None
         self.server_started = False
 
         self.msg = None
         self.regex = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-        self.mi_type = 'html' if not nonHtmlFlag else 'plain'
+        self.mi_type = 'html'
 
-    def send_email(self, body=''):
+    def send_email(self, subject, body):
+        """
+            :param subject: string for subject part of email by default it is set to be blank quotes
+            :param body: Triple quoted string for body portion of email by default it is set to be blank quotes
+        """
         try:
             self.body = body
+            self.subject = subject
             # =======================================================================
 
-            sender_email = self.conf.get('SMTP_EMAIL_ID')
-            server_id = self.conf.get('SMTP_SERVER_ID')
-            password = self.conf.get('SMTP_PASSWORD')
+            sender_email = self.conf.get('MAIL_USERNAME')
+            server_id = self.conf.get('MAIL_SERVER_ID')
+            password = self.conf.get('MAIL_PASSWORD')
 
             # =======================================================================
 
             self._mail_validation()
             self.msg = MIMEMultipart()
             self.msg["From"] = sender_email
-            self.msg["Bcc"] = self.conf.get('WE_SERVE_DEV_MAIL_ID')
             self.msg["To"] = self.to_mail.lower()
             self.msg["Subject"] = self.subject
 
@@ -80,4 +81,4 @@ class Mail():
 
 
 if __name__ == '__main__':
-    print(Mail(receiver_email='gm150180107025@gmial.com').send_email())
+    print(Mail(receiver_email='gm150180107025@gmail.com').send_email('Subject', 'Body'))
