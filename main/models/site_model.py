@@ -11,7 +11,7 @@ class Sites(BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     link = db.Column(db.TEXT, nullable=False)
 
-    news = db.relationship("News", backref=db.backref('Sites', lazy=True))
+    # news_sites = db.relationship("News", backref=db.backref('Sites', lazy=True))
 
     @validates('link')
     def validate_site_link(self, key, link):

@@ -13,7 +13,7 @@ class Users(BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    users = db.relationship("Users", back_populates="NewsUserAuth")
+    # users = db.relationship("NewsUserAuth", backref=db.backref('Users', lazy=True))
 
     @validates('name')
     def validate_user_name(self, key, name):
@@ -29,7 +29,7 @@ class Users(BaseModel):
     def validate_email(self, key, email):
         if not email:
             raise AssertionError('Email cannot be blank.')
-        if not re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
+        if not re.search("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$", email):
             raise AssertionError(f"{email} is not a Valid Email Id")
         if Users.query.filter(Users.email == email).first():
             raise AssertionError(f'User with this {email} email already exists.')

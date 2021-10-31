@@ -1,6 +1,6 @@
 from main import app
 from main.controllers import user_controller, tag_controller, site_controller, user_news_auth_controller
-from flask import make_response, jsonify, request
+from flask import make_response, jsonify, request, Response
 from http import HTTPStatus
 
 
@@ -15,11 +15,12 @@ def get_all_user():
 @app.route('/add_new_user', methods=['POST'])
 def add_user():
     try:
-        request_data = request.get_json()
+        request_data = request.form
         name = request_data.get('name')
         email = request_data.get('email')
+        user_controller.add_user(name=name, email=email)
 
-        return jsonify(user_controller.add_user(name=name, email=email))
+        return Response(status=HTTPStatus.CREATED)
 
     except AssertionError as asserted:
         return make_response(str(asserted), HTTPStatus.BAD_REQUEST)
@@ -30,9 +31,11 @@ def add_user():
 @app.route('/add_new_site', methods=['POST'])
 def add_site():
     try:
-        request_data = request.get_json()
+        request_data = request.form
         url = request_data.get('url')
-        return jsonify(site_controller.add_site(url))
+        site_controller.add_site(url)
+
+        return Response(status=HTTPStatus.CREATED)
 
     except BaseException as B:
         return make_response(str(B), HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -49,9 +52,11 @@ def get_all_site():
 @app.route('/add_new_tag', methods=['POST'])
 def add_new_tag():
     try:
-        request_data = request.get_json()
+        request_data = request.form
         tag_name = request_data.get('tag_name')
-        return jsonify(tag_controller.add_tag(tag_name))
+        tag_controller.add_tag(tag_name)
+
+        return Response(status=HTTPStatus.CREATED)
 
     except AssertionError as asserted:
         return make_response(str(asserted), HTTPStatus.BAD_REQUEST)
@@ -67,8 +72,8 @@ def get_all_tags():
         return make_response(str(B), HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
-@app.route('/user/mail/<int:n_mail_id>/mail_approval/<bool:is_authentic>', methods=['GET'])
-def get_all_tags(n_mail_id, is_authentic):
+@app.route('/user/mail/<int:n_mail_id>/mail_approval/<is_authentic>', methods=['GET'])
+def get_user_response(n_mail_id, is_authentic):
     try:
         return jsonify(user_news_auth_controller.add_users_response(id=n_mail_id, status=is_authentic))
 

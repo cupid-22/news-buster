@@ -14,8 +14,8 @@ class NewsUserAuth(BaseModel):
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True)
     news_id = db.Column(db.Integer, db.ForeignKey('news.id'), unique=True)
 
-    users = db.relationship('Users', backref=db.backref('NewsUserAuth', lazy=True))
-    news = db.relationship('Sites', backref=db.backref('NewsUserAuth', lazy=True))
+    # users = db.relationship('NewsUserAuth', backref=db.backref('Users', lazy=True))
+    # news = db.relationship('Sites', backref=db.backref('NewsUserAuth', lazy=True))
 
     @validates('status')
     def validate_status(self, key, status):

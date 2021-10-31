@@ -19,8 +19,8 @@ class News(BaseModel):
     url = db.Column(db.String(120), unique=True, nullable=False)
     site_id = db.Column(db.Integer, db.ForeignKey('sites.id'), unique=True)
 
-    site = db.relationship('Sites', backref=db.backref('News', lazy=True))
-    news = db.relationship("News", backref=db.backref('NewsUserAuth', lazy=True))
+    # news_sites = db.relationship('News', backref=db.backref('Sites', lazy=True))
+    # news = db.relationship("News", backref=db.backref('NewsUserAuth', lazy=True))
 
     @validates('title')
     def validate_title(self, key, title):
