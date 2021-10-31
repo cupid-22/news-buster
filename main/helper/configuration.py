@@ -2,12 +2,10 @@ import os
 import re
 import json
 
-ROOT_PATH = re.split('\Wmain', os.getcwd())[0]
-
 
 class BaseConfig(object):
     PORT = os.environ.get('PORT', 5000)
-    ROOT_PATH = ROOT_PATH
+    ROOT_PATH = re.split('\Wmain', os.getcwd())[0]
     SERVER_VERBOSE_LOGS = False
     SMTP_EMAIL_ID = os.environ.get('SMTP_PASSWORD', 'gaurav.mishra.cx@gmail.com')
     SMTP_SERVER_ID = 'smtp.gmail.com'
@@ -37,7 +35,7 @@ config = {
 
 def configure_app(app, mode='FILE'):
     if mode == 'FILE':
-        app.config.from_file(filename=f'{ROOT_PATH}/.env.json', load=json.load)
+        app.config.from_file(filename=f'{os.path.dirname(app.root_path)}/.env.json', load=json.load)
     else:
         print(os.getenv('FLASK_CONFIGURATION', 'default'))
         config_name = os.getenv('FLASK_CONFIGURATION', 'deployment')

@@ -1,5 +1,5 @@
 from . import db
-from sqlalchemy.orm import validates, relationship
+from sqlalchemy.orm import validates
 from dataclasses import dataclass
 from .base_model import BaseModel
 
