@@ -56,9 +56,10 @@ the acknowledgements section. Here are a few examples.
 <!-- TODO: finalising the code flow here -->
 
 - Required APIs:
-    * [Add new User](https://flask.palletsprojects.com/en/2.0.x/)
-    * [Add new preference option](https://flask.palletsprojects.com/en/2.0.x/)
-    * [Add new preference to User](https://flask.palletsprojects.com/en/2.0.x/)
+    * Adding new User
+    * Adding new preference option
+    * Adding new preference to User
+    * Email confirmation by user
 
 - Database UML:
 ![database_uml.png](./temp/database_uml.png)

@@ -2,10 +2,11 @@ from . import db
 from dataclasses import dataclass
 from sqlalchemy.orm import validates
 import re
+from .base_model import BaseModel
 
 
 @dataclass
-class Users(db.Model):
+class Users(BaseModel):
     name: str
     email: str
 
@@ -32,14 +33,3 @@ class Users(db.Model):
         if Users.query.filter(Users.email == email).first():
             raise AssertionError(f'User with this {email} email already exists.')
         return email
-
-    def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
-    def __repr__(self):
-        return f'<User {self.name!r}>'
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-        return True

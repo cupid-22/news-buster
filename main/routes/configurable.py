@@ -54,7 +54,7 @@ def add_site_to_user():
 @app.route('/add_new_tag', methods=['POST'])
 def add_new_tag():
     try:
-        tag_name = ''
+        tag_name = 'Sports'
         return jsonify(tag_controller.add_tag(tag_name))
 
     except AssertionError as asserted:

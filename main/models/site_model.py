@@ -1,10 +1,11 @@
 from . import db
 from sqlalchemy.orm import validates
 from dataclasses import dataclass
+from .base_model import BaseModel
 
 
 @dataclass
-class Sites(db.Model):
+class Sites(BaseModel):
     link: str
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
