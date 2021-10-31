@@ -6,7 +6,7 @@ import re
 
 @dataclass
 class Users(db.Model):
-    name: int
+    name: str
     email: str
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -16,7 +16,7 @@ class Users(db.Model):
     @validates('name')
     def validate_user_name(self, key, name):
         if not name:
-            raise AssertionError('Meal name cannot be blank.')
+            raise AssertionError('User name cannot be blank.')
         if Users.query.filter(Users.name == name).first():
             raise AssertionError('The name {} already exists'.format(name))
         if len(name) < 2:
