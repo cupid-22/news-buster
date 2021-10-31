@@ -10,3 +10,7 @@ class HandleSite:
     def load_news_apis(self):
         all_sites = Sites.query.all()
         self.site_urls.extend(all_sites)
+
+    def categorize_retrieved_news(self):
+        all_sites = Sites.query.all()
+        self.site_urls.extend(all_sites)
