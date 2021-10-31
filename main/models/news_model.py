@@ -17,8 +17,10 @@ class News(BaseModel):
     title = db.Column(db.String(100), nullable=False)
     body = db.Column(db.Text, nullable=True)
     url = db.Column(db.String(120), unique=True, nullable=False)
-    site_id = db.Column(db.Integer, db.ForeignKey('category.id'), unique=True)
-    site = db.relationship('site', backref=db.backref('news', lazy=True))
+    site_id = db.Column(db.Integer, db.ForeignKey('sites.id'), unique=True)
+
+    site = db.relationship('Sites', backref=db.backref('News', lazy=True))
+    news = db.relationship("News", backref=db.backref('NewsUserAuth', lazy=True))
 
     @validates('title')
     def validate_title(self, key, title):
@@ -43,8 +45,5 @@ class News(BaseModel):
     #         raise AssertionError('Body cannot be blank.')
     #     return body
 
-    def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
     def __repr__(self):
-        return f'<User {self.name!r}>'
+        return f'<News {self.name!r}>'

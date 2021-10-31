@@ -5,13 +5,17 @@ from .base_model import BaseModel
 
 
 @dataclass
-class Sites(BaseModel):
-    link: str
+class NewsUserAuth(BaseModel):
+    id: int
+    status: bool
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    link = db.Column(db.TEXT, nullable=False)
+    status = db.Column(db.BOOLEAN, default=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True)
+    news_id = db.Column(db.Integer, db.ForeignKey('news.id'), unique=True)
 
-    news = db.relationship("News", backref=db.backref('Sites', lazy=True))
+    users = db.relationship('Users', backref=db.backref('NewsUserAuth', lazy=True))
+    news = db.relationship('Sites', backref=db.backref('NewsUserAuth', lazy=True))
 
     @validates('link')
     def validate_site_link(self, key, link):
@@ -22,6 +26,3 @@ class Sites(BaseModel):
         if len(link) < 2:
             raise AssertionError('Site link must be greater than 2 characters.')
         return link
-
-    def __repr__(self):
-        return f'<Site {self.link!r}>'

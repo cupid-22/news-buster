@@ -35,8 +35,6 @@
 News filter Check the authenticity of the same news what we receive & response to someone's request to confirm
 authenticity.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Built With
 
 <div id="built-with"></div>
@@ -48,7 +46,6 @@ the acknowledgements section. Here are a few examples.
 * [RabbitMQ](https://www.rabbitmq.com/)
 * [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 <!-- flow-of-project -->
 
 ### Project Floor Plan
@@ -155,5 +152,8 @@ This project takes some boilerplate code from some of these sites and understand
 
 * [Automated Web Scraping with python and celery](https://codeburst.io/automated-web-scraping-with-python-and-celery-ac02a4a9ce51)
 * [ReadME boilerplate](https://github.com/othneildrew/Best-README-Template/edit/master/README.md)
+* [Getting Started With Celery](https://www.youtube.com/watch?v=THxCy-6EnQM)
+* [Simple Relationships](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#a-minimal-application)
+* [Celery Beat](https://docs.celeryproject.org/en/stable/userguide/periodic-tasks.html#entries)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
