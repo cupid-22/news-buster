@@ -38,13 +38,13 @@ authenticity.
 ### Built With
 
 <div id="built-with"></div>
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for
-the acknowledgements section. Here are a few examples.
+Below is the list of some major frameworks/libraries that are used to bootstrap this project.
 
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * [Celery](https://flask.palletsprojects.com/en/2.0.x/patterns/celery/)
 * [RabbitMQ](https://www.rabbitmq.com/)
 * [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+* [PostgreSQL](https://www.postgresql.org/)
 
 <!-- flow-of-project -->
 
@@ -53,11 +53,14 @@ the acknowledgements section. Here are a few examples.
 <div id="flow-of-project"></div>
 <!-- TODO: finalising the code flow here -->
 
-- Required APIs:
+- Has these Flask APIs:
     * Adding new User
-    * Adding new preference option
-    * Adding new preference to User
-    * Email confirmation by user
+    * Adding new preference option.
+    * Adding new preference to user.
+    * Email confirmation by user.
+    * Adding new site to system.
+    * Retrieve all the available sites.
+    * Retrieve all the users.
 
 - Database UML:
   ![database_uml.png](readme_content/database_uml.png)
